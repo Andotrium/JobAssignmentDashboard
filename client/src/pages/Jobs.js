@@ -26,27 +26,32 @@ const Jobs = () => {
   }, []);
 
   if (loading) return <p>Loading jobs...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (error) return <p className="error">{error}</p>;
 
   return (
-    <div style={{ maxWidth: "800px", margin: "30px auto" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>Jobs</h2>
-        <button onClick={logout}>Logout</button>
-      </div>
+    <div className="container">
+      <div className="page-card">
+        <div className="page-title">
+          <h2>Jobs</h2>
+          <div>
+            <button className="btn btn-ghost" onClick={logout}>Logout</button>
+          </div>
+        </div>
 
-      <p>
-        Logged in as <strong>{user.email}</strong> ({user.role})
-      </p>
+        <p className="muted">
+          Logged in as <strong>{user.email}</strong> ({user.role})
+        </p>
 
-      <Link to="/create-job">Create Job</Link>
+        <div className="mt-sm">
+          <Link className="btn btn-primary" to="/create-job">Create Job</Link>
+        </div>
 
-      <hr />
+        <hr />
 
-      {jobs.length === 0 ? (
-        <p>No jobs found</p>
-      ) : (
-        <ul>
+        {jobs.length === 0 ? (
+          <p>No jobs found</p>
+        ) : (
+          <ul className="list">
           {/* {jobs.map((job) => (
             <li key={job._id} style={{ marginBottom: "15px" }}>
               <h4>{job.title}</h4>
@@ -64,43 +69,42 @@ const Jobs = () => {
             </li>
           ))} */}
           {jobs.map((job) => (
-  <li key={job._id} style={{ marginBottom: "20px" }}>
-    <h4>{job.title}</h4>
-    <p>{job.description}</p>
-    <p>Status: {job.status}</p>
+            <li key={job._id} className="list-item">
+              <h4>{job.title}</h4>
+              <p className="meta">{job.description}</p>
+              <div className="meta">Status: {job.status}</div>
 
-    {job.owner && (
-      <p>
-        Owner:{" "}
-        {typeof job.owner === "object"
-          ? job.owner.email
-          : "You"}
-      </p>
-    )}
+              {job.owner && (
+                <div className="meta">
+                  Owner: {typeof job.owner === "object" ? job.owner.email : "You"}
+                </div>
+              )}
 
-    {/* Actions */}
-    <Link to={`/edit-job/${job._id}`}>Edit</Link>
+              <div className="actions">
+                <Link className="btn btn-ghost" to={`/edit-job/${job._id}`}>Edit</Link>
 
-    <button
-      style={{ marginLeft: "10px" }}
-      onClick={async () => {
-        if (!window.confirm("Delete this job?")) return;
+                <button
+                  className="btn btn-ghost ml-sm"
+                  onClick={async () => {
+                    if (!window.confirm("Delete this job?")) return;
 
-        try {
-          await api.delete(`/jobs/${job._id}`);
-          setJobs(jobs.filter((j) => j._id !== job._id));
-        } catch (err) {
-          alert("Failed to delete job");
-        }
-      }}
-    >
-      Delete
-    </button>
-  </li>
-))}
+                    try {
+                      await api.delete(`/jobs/${job._id}`);
+                      setJobs(jobs.filter((j) => j._id !== job._id));
+                    } catch (err) {
+                      alert("Failed to delete job");
+                    }
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
 
-        </ul>
-      )}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

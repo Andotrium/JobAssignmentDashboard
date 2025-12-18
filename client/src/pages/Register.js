@@ -34,42 +34,44 @@ const Register = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Register</h2>
+    <div className="container">
+      <div className="page-card card-centered" style={{ maxWidth: 480 }}>
+        <h2>Register</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label><br />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <label className="form-label">Email</label>
+            <input
+              className="form-control"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <div style={{ marginTop: "10px" }}>
-          <label>Password</label><br />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-          />
-        </div>
+          <div className="form-row">
+            <label className="form-label">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+            />
+          </div>
 
-        <button style={{ marginTop: "15px" }} type="submit">
-          Register
-        </button>
-      </form>
+          <button className="btn btn-primary" type="submit">Register</button>
+        </form>
 
-      <p style={{ marginTop: "10px" }}>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+        <p className="muted mt-sm">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };

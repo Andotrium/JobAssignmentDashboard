@@ -5,11 +5,14 @@ import Jobs from "./pages/Jobs";
 import CreateJob from "./pages/CreateJob";
 import ProtectedRoute from "./components/ProtectedRoute";
 import EditJob from "./pages/EditJob";
+import Navbar from "./components/Navbar";
 
 
 function App() {
   return (
-    <Routes>
+    <>
+      <Navbar />
+      <Routes>
       <Route path="/" element={<Navigate to="/jobs" />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -41,9 +44,8 @@ function App() {
         }
 
       />
-    </Routes>
-    
-
+      </Routes>
+    </>
   );
 }
 

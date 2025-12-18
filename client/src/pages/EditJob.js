@@ -44,45 +44,35 @@ const EditJob = () => {
   };
 
   return (
-    <div style={{ maxWidth: "500px", margin: "40px auto" }}>
-      <h2>Edit Job</h2>
+    <div className="container">
+      <div className="page-card card-centered">
+        <h2>Edit Job</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title</label><br />
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <label className="form-label">Title</label>
+            <input className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          </div>
 
-        <div style={{ marginTop: "10px" }}>
-          <label>Description</label><br />
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+          <div className="form-row">
+            <label className="form-label">Description</label>
+            <textarea className="form-control form-textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
+          </div>
 
-        <div style={{ marginTop: "10px" }}>
-          <label>Status</label><br />
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
-            <option value="open">Open</option>
-            <option value="in-progress">In Progress</option>
-            <option value="closed">Closed</option>
-          </select>
-        </div>
+          <div className="form-row">
+            <label className="form-label">Status</label>
+            <select className="form-control" value={status} onChange={(e) => setStatus(e.target.value)}>
+              <option value="open">Open</option>
+              <option value="in-progress">In Progress</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
 
-        <button style={{ marginTop: "15px" }} type="submit">
-          Update
-        </button>
-      </form>
+          <button className="btn btn-primary" type="submit">Update</button>
+        </form>
+      </div>
     </div>
   );
 };
