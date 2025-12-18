@@ -1,7 +1,7 @@
+require("dotenv").config();
 const app = require("./app");
 const connectDB = require("./config/db");
 const User = require("./models/User");
-require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8080;
 //   });
 //   console.log("Test user created:", user.email);
 // };
+console.log(`server connecting:${process.env.URL}`);
 
 connectDB().then(async () => {   // 👈 MAKE THIS ASYNC
 
